@@ -53,6 +53,7 @@ const Login: FC = (props: any) => {
               placeholder={strings.PASSWORD}
               label={strings.ENTER_PASSWORD}
               icon="lock"
+              icon2="eye"
             />
             <ButtonComp btnText={strings.LOGIN} onPress={onLogin} />
             <TouchableOpacity

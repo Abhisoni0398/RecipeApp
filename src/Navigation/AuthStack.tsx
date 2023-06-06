@@ -8,18 +8,6 @@ const Stack = createNativeStackNavigator();
 const AuthStack = (isFirstTime: boolean) => {
   return (
     <>
-      {!isFirstTime && (
-        <Stack.Screen
-          name={navigationStrings.ON_BOARDING}
-          component={Screens.OnBoarding}
-          options={{headerShown: false}}
-        />
-      )}
-      <Stack.Screen
-        name={navigationStrings.INITIAL_AUTH}
-        component={Screens.InitialAuth}
-        options={{headerShown: false}}
-      />
       <Stack.Screen
         name={navigationStrings.LOGIN}
         component={Screens.Login}
