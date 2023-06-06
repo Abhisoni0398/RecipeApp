@@ -19,11 +19,14 @@ const ResetPassword = (props: any) => {
 
   const resetPass = useCallback(() => {
     console.log('I am called.');
-
+    if (password.length < 8) {
+      return;
+    }
     if (password !== resetpassword) {
       showError(strings.PASS_MATCH_ERR);
       return;
     }
+    navigation.navigate(navigationStrings.LOGIN);
   }, [password, resetpassword]);
 
   return (
@@ -42,6 +45,7 @@ const ResetPassword = (props: any) => {
             label={strings.PASSWORD}
             icon="lock"
             icon2="eye"
+            password={password}
           />
           <TextInputWithLabel
             value={resetpassword}

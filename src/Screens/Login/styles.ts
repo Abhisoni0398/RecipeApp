@@ -4,29 +4,42 @@ import commonStyles from '../../styles/commonStyles';
 import fontFamily from '../../styles/fontFamily';
 import { moderateScale, moderateScaleVertical } from '../../styles/responsiveSize';
 
+// define your styles
 const styles = StyleSheet.create({
     container: {
-        flex: 1, 
-        justifyContent: 'space-between', 
-        marginHorizontal: moderateScale(34)
+      flex: 1,
     },
-    experienceText: {
-        ...commonStyles.fontSize18,
-        fontFamily:fontFamily.medium,
-        alignSelf:'center',
-        marginVertical:moderateScaleVertical(16)
+    view1: {flex: 1},
+    textStyle: {
+      textAlign: 'center',
+      fontFamily: fontFamily.medium,
+      fontSize: moderateScale(16),
     },
-    btnStyle: {
-        backgroundColor: colors.lighPink, 
-        alignSelf: 'center' ,
-        marginTop:moderateScaleVertical(16)
+    loginWith: {
+      textAlign: 'center',
+      marginVertical: moderateScale(6),
+      fontFamily: fontFamily.medium,
+      color: colors.blackOpacity60,
+      fontSize: moderateScale(14),
+      letterSpacing: 1,
     },
-    headerStyle: {
-        alignItems: 'center',
-        paddingHorizontal: 0,
-        marginBottom: moderateScaleVertical(24)
+    noAccount: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    signUp: {
+      fontFamily: fontFamily.bold,
+      fontSize: moderateScale(16),
+      color: colors.gray,
+    },
+    or: {
+        textAlign: 'center',
+        fontFamily: fontFamily.medium,
+        color: colors.gray,
+        fontSize: moderateScale(16),
+        marginTop: moderateScale(4)
     }
-   
-});
+  });
 
 export default styles

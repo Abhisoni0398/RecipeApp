@@ -14,10 +14,9 @@ import HeaderComp from '../../Components/HeaderComp';
 import TextInputWithLabel from '../../Components/TextInputWithLabel';
 import WrapperContainer from '../../Components/WrapperContainer';
 import ButtonComp from '../../Components/ButtonComp';
-//styling
-import {moderateScale} from '../../styles/responsiveSize';
-import fontFamily from '../../styles/fontFamily';
 import SocialButton from '../../Components/SocialButton';
+//styling
+import styles from './styles';
 import colors from '../../styles/colors';
 //constants
 import navigationStrings from '../../constants/navigationStrings';
@@ -65,6 +64,15 @@ const Login: FC = (props: any) => {
             </TouchableOpacity>
           </View>
         </TouchableWithoutFeedback>
+        <View style={styles.noAccount}>
+          <Text style={styles.textStyle}>{strings.NO_ACCOUNT}</Text>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate(navigationStrings.SIGNUP)}>
+            <Text style={styles.signUp}>{strings.SIGNUP}</Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.or}>or</Text>
         <Text style={styles.loginWith}>{strings.LOGIN_WITH}</Text>
         <SocialButton
           btnText={strings.GOOGLE}
@@ -82,27 +90,6 @@ const Login: FC = (props: any) => {
     </WrapperContainer>
   );
 };
-
-// define your styles
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  view1: {flex: 1},
-  textStyle: {
-    textAlign: 'center',
-    fontFamily: fontFamily.medium,
-    fontSize: moderateScale(16),
-  },
-  loginWith: {
-    textAlign: 'center',
-    marginVertical: moderateScale(6),
-    fontFamily: fontFamily.medium,
-    color: colors.blackOpacity60,
-    fontSize: moderateScale(14),
-    letterSpacing: 1,
-  },
-});
 
 //make this component available to the app
 export default Login;

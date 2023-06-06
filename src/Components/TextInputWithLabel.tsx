@@ -11,6 +11,7 @@ import colors from '../styles/colors';
 import fontFamily from '../styles/fontFamily';
 import commonStyles from '../styles/commonStyles';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import strings from '../constants/lang';
 
 interface Props {
   value: string;
@@ -20,11 +21,20 @@ interface Props {
   label: string;
   icon?: string;
   icon2?: string;
+  password?: string;
 }
 
 const TextInputWithLabel: FC<Props> = props => {
-  const {value, placeholder, onChangeText, inputStyle, label, icon, icon2} =
-    props;
+  const {
+    value,
+    placeholder,
+    onChangeText,
+    inputStyle,
+    label,
+    icon,
+    icon2,
+    password,
+  } = props;
   const [eye, setEye] = useState<boolean>(true);
   return (
     <View style={{marginVertical: moderateScale(8)}}>
@@ -51,6 +61,20 @@ const TextInputWithLabel: FC<Props> = props => {
           </TouchableOpacity>
         )}
       </View>
+      {password && (
+        <View style={styles.bottomTxt}>
+          <Text
+            style={{
+              fontFamily: fontFamily.medium,
+              color: password.length < 8 ? colors.red : colors.gray,
+            }}>
+            {strings.PASSWORD_LENGTH}
+          </Text>
+          {password.length > 7 && (
+            <Icon name={'check'} size={20} color={colors.gray} />
+          )}
+        </View>
+      )}
     </View>
   );
 };
@@ -77,6 +101,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     paddingHorizontal: moderateScale(12),
     height: moderateScale(40),
+  },
+  bottomTxt: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: moderateScale(8),
   },
 });
 
