@@ -39,7 +39,12 @@ const styles = StyleSheet.create({
         color: colors.gray,
         fontSize: moderateScale(16),
         marginTop: moderateScale(4)
-    }
+    },
+    bottomTxt: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginTop: moderateScale(8),
+    },
   });
 
 export default styles

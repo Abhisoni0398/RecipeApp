@@ -11,6 +11,7 @@ import WrapperContainer from '../../Components/WrapperContainer';
 import HeaderComp from '../../Components/HeaderComp';
 //styling
 import styles from './styles';
+import navigationStrings from '../../constants/navigationStrings';
 
 // create a component
 const Signup: FC = (props: any) => {
@@ -22,6 +23,13 @@ const Signup: FC = (props: any) => {
     email: '',
     password: '',
   });
+
+  const signup = () => {
+    navigation.navigate(navigationStrings.OTP_VERIFICATION, {
+      from: navigationStrings.SIGNUP,
+    });
+  };
+
   return (
     <WrapperContainer>
       <HeaderComp
@@ -66,11 +74,9 @@ const Signup: FC = (props: any) => {
         label={strings.PASSWORD}
         icon="lock"
         icon2="eye"
+        password={state.password}
       />
-      <ButtonComp
-        btnText={strings.CONTINUE}
-        onPress={() => console.log('account created')}
-      />
+      <ButtonComp btnText={strings.CONTINUE} onPress={signup} />
       <Text style={styles.txtStyle}>{strings.BY_CONTINUE}</Text>
       <View style={{flexDirection: 'row', justifyContent: 'center'}}>
         <TouchableOpacity activeOpacity={0.7}>

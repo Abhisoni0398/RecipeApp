@@ -34,6 +34,7 @@ export default {
     BY_CONTINUE: 'By continuing, you agree to the',
     TERMS: 'Terms of Services ',
     PRIVACY_POLICY: " Privacy Policy",
+    ENTER_OTP: 'Please enter valid OTP',
     OLD_KAI_COMICS_APP_BY_THE_PLANET_X_GROUP_LLC: "Old Kai's Comics App By The Planet X Group LLC",
     PREVIEWS: "Previews",
     AN_EXPERIENCE_AWAITS_YOU: "An Experience awaits you!",

@@ -1,9 +1,8 @@
 //import liraries
-import React, {Component, FC} from 'react';
+import React, {Component, FC, useCallback, useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
@@ -14,17 +13,35 @@ import {
 import WrapperContainer from '../../Components/WrapperContainer';
 import HeaderComp from '../../Components/HeaderComp';
 import strings from '../../constants/lang';
+import ButtonComp from '../../Components/ButtonComp';
 //3rd party
 import OTPInputView from '@twotalltotems/react-native-otp-input';
-import {moderateScale} from '../../styles/responsiveSize';
-import colors from '../../styles/colors';
-import fontFamily from '../../styles/fontFamily';
-import ButtonComp from '../../Components/ButtonComp';
 import navigationStrings from '../../constants/navigationStrings';
+//styling
+import styles from './styles';
+//custom functions
+import actions from '../../redux/actions';
+import {showError} from '../../utils/helperFunctions';
 
 // create a component
 const OtpVerification: FC = (props: any) => {
   const {navigation} = props;
+  let paramData = props?.route?.params?.from;
+
+  const [otp, setOtp] = useState<string>('');
+  console.log(otp?.length);
+  const verifyOtp = () => {
+    if (otp?.length < 4) {
+      showError(strings.ENTER_OTP);
+      return;
+    }
+    if (paramData === navigationStrings.SIGNUP) {
+      actions.login(true);
+    } else {
+      navigation.navigate(navigationStrings.RESET_PASSWORD);
+    }
+  };
+
   return (
     <WrapperContainer>
       <HeaderComp
@@ -40,19 +57,17 @@ const OtpVerification: FC = (props: any) => {
             <OTPInputView
               style={styles.otp}
               pinCount={4}
-              // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
-              // onCodeChanged = {code => { this.setState({code})}}
+              code={otp} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
+              onCodeChanged={code => setOtp(code)}
               autoFocusOnLoad
               codeInputFieldStyle={styles.underlineStyleBase}
-              onCodeFilled={code => {
-                console.log(`Code is ${code}, you are good to go!`);
+              onCodeFilled={(code: string) => {
+                console.log('code filled');
               }}
             />
             <ButtonComp
               btnText={strings.CONFIRM}
-              onPress={() =>
-                navigation.navigate(navigationStrings.RESET_PASSWORD)
-              }
+              onPress={verifyOtp}
               btnStyle={{width: '100%'}}
             />
             <TouchableOpacity style={styles.resendOtp} activeOpacity={0.7}>
@@ -64,35 +79,5 @@ const OtpVerification: FC = (props: any) => {
     </WrapperContainer>
   );
 };
-
-// define your styles
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  otp: {
-    width: '80%',
-    height: moderateScale(180),
-  },
-  underlineStyleBase: {
-    backgroundColor: colors.blackOpacity10,
-    borderRadius: moderateScale(48),
-    color: colors.black,
-    fontFamily: fontFamily.bold,
-    fontSize: moderateScale(16),
-    width: moderateScale(58),
-    height: moderateScale(58),
-  },
-  resendOtp: {
-    alignItems: 'center',
-    marginBottom: moderateScale(24),
-  },
-  textStyle: {
-    color: colors.black,
-    fontFamily: fontFamily.medium,
-    fontSize: moderateScale(16),
-  },
-});
-
 //make this component available to the app
 export default OtpVerification;

@@ -18,10 +18,24 @@ import HeaderComp from '../../Components/HeaderComp';
 //constants
 import navigationStrings from '../../constants/navigationStrings';
 import strings from '../../constants/lang';
+//custom functions
+import validator from '../../utils/validations';
+import {showError} from '../../utils/helperFunctions';
 
 const ForgotPassword: FC = (props: any) => {
   const {navigation} = props;
   const [email, setEmail] = useState<string>('');
+  const [error, setError] = useState<boolean>(false);
+
+  const sendCode = () => {
+    const error = validator({email});
+    if (error) {
+      showError(error);
+      return;
+    }
+    navigation.navigate(navigationStrings.OTP_VERIFICATION);
+  };
+
   return (
     <WrapperContainer>
       <HeaderComp
@@ -44,12 +58,7 @@ const ForgotPassword: FC = (props: any) => {
           </View>
         </TouchableWithoutFeedback>
         <View style={styles.button}>
-          <ButtonComp
-            btnText={strings.SEND_EMAIL}
-            onPress={() =>
-              navigation.navigate(navigationStrings.OTP_VERIFICATION)
-            }
-          />
+          <ButtonComp btnText={strings.SEND_EMAIL} onPress={sendCode} />
         </View>
       </KeyboardAvoidingView>
     </WrapperContainer>
