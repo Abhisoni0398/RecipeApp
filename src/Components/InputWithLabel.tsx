@@ -11,7 +11,6 @@ import colors from '../styles/colors';
 import fontFamily from '../styles/fontFamily';
 import commonStyles from '../styles/commonStyles';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import strings from '../constants/lang';
 
 interface Props {
   value: string;
@@ -20,26 +19,14 @@ interface Props {
   inputStyle?: object; //? means its is an optional
   label: string;
   icon?: string;
-  icon2?: string;
-  password?: string;
   viewStyle?: object;
 }
 
-const TextInputWithLabel: FC<Props> = props => {
-  const {
-    value,
-    placeholder,
-    onChangeText,
-    inputStyle,
-    label,
-    icon,
-    icon2,
-    password,
-    viewStyle,
-  } = props;
-  const [eye, setEye] = useState<boolean>(true);
+const InputWithLabel: FC<Props> = props => {
+  const {value, placeholder, onChangeText, inputStyle, label, icon, viewStyle} =
+    props;
   return (
-    <View style={{marginVertical: moderateScale(8)}}>
+    <View style={{marginVertical: moderateScale(8), flex: 1}}>
       <Text style={styles.labelText}>{label} </Text>
       <View style={{...styles.viewStyle, ...viewStyle}}>
         <Icon name={icon} size={20} color={colors.black} />
@@ -48,35 +35,8 @@ const TextInputWithLabel: FC<Props> = props => {
           style={{...styles.inputStyle, ...inputStyle}}
           value={value}
           onChangeText={onChangeText}
-          secureTextEntry={!!eye ? false : true}
         />
-        {icon2 && (
-          <TouchableOpacity
-            style={{flex: 0.1, alignItems: 'flex-end'}}
-            activeOpacity={0.7}
-            onPress={() => setEye(!eye)}>
-            <Icon
-              name={!!eye ? 'eye' : 'eye-slash'}
-              size={20}
-              color={colors.black}
-            />
-          </TouchableOpacity>
-        )}
       </View>
-      {password && (
-        <View style={styles.bottomTxt}>
-          <Text
-            style={{
-              fontFamily: fontFamily.medium,
-              color: password.length < 8 ? colors.red : colors.gray,
-            }}>
-            {strings.PASSWORD_LENGTH}
-          </Text>
-          {password.length > 7 && (
-            <Icon name={'check'} size={20} color={colors.gray} />
-          )}
-        </View>
-      )}
     </View>
   );
 };
@@ -103,6 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     paddingHorizontal: moderateScale(12),
     height: moderateScale(40),
+    // width: '90%',
   },
   bottomTxt: {
     flexDirection: 'row',
@@ -111,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TextInputWithLabel;
+export default InputWithLabel;

@@ -6,27 +6,19 @@ import { moderateScale, moderateScaleVertical } from '../../styles/responsiveSiz
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1, 
-        justifyContent: 'space-between', 
-        marginHorizontal: moderateScale(34)
+      flex: 1,
+      backgroundColor: colors.white,
     },
-    experienceText: {
-        ...commonStyles.fontSize18,
-        fontFamily:fontFamily.medium,
-        alignSelf:'center',
-        marginVertical:moderateScaleVertical(16)
+    txtStyle: {
+      textAlign: 'center',
+      fontFamily: fontFamily.medium,
+      color: colors.gray,
+      marginBottom: moderateScale(4),
     },
-    btnStyle: {
-        backgroundColor: colors.lighPink, 
-        alignSelf: 'center' ,
-        marginTop:moderateScaleVertical(16)
+    termTxt: {
+      fontFamily: fontFamily.bold,
+      color: colors.black,
     },
-    headerStyle: {
-        alignItems: 'center',
-        paddingHorizontal: 0,
-        marginBottom: moderateScaleVertical(24)
-    }
-   
-});
+  });
 
 export default styles

@@ -18,10 +18,14 @@ const ResetPassword = (props: any) => {
   const [resetpassword, setResetPassword] = useState<string>('');
 
   const resetPass = useCallback(() => {
-    console.log('I am called.');
+    if (password.length === 0) {
+      showError(strings.PASS_LENGTH);
+      return;
+    }
     if (password.length < 8) {
       return;
     }
+
     if (password !== resetpassword) {
       showError(strings.PASS_MATCH_ERR);
       return;
