@@ -12,29 +12,31 @@ import {
 import {moderateScale} from '../../styles/responsiveSize';
 //custom components
 import ButtonComp from '../../Components/ButtonComp';
-import TextInputWithLabel from '../../Components/TextInputWithLabel';
 import WrapperContainer from '../../Components/WrapperContainer';
 import HeaderComp from '../../Components/HeaderComp';
+import BottomTxt from '../../Components/BottomTxt';
 //constants
 import navigationStrings from '../../constants/navigationStrings';
 import strings from '../../constants/lang';
 //custom functions
 import validator from '../../utils/validations';
 import {showError} from '../../utils/helperFunctions';
+//3rd party
+import {useForm} from 'react-hook-form';
 
 const ForgotPassword: FC = (props: any) => {
   const {navigation} = props;
   const [email, setEmail] = useState<string>('');
-  const [error, setError] = useState<boolean>(false);
 
   const sendCode = () => {
-    const error = validator({email});
-    if (error) {
-      showError(error);
-      return;
-    }
     navigation.navigate(navigationStrings.OTP_VERIFICATION);
   };
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({mode: 'onBlur'});
 
   return (
     <WrapperContainer>
@@ -48,17 +50,22 @@ const ForgotPassword: FC = (props: any) => {
         style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={{marginTop: moderateScale(18), flex: 1}}>
-            <TextInputWithLabel
-              value={email}
-              onChangeText={txt => setEmail(txt)}
-              placeholder={strings.ENTER_EMAIL_ADDRESS}
+            <BottomTxt
+              control={control}
               label={strings.EMAIL_ADDRESS}
-              icon="envelope"
+              placeholder={strings.EMAIL_ADDRESS}
+              show={true}
+              name={strings.EMAIL_ADDRESS}
+              pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+              msg={strings.VALID_MAIL}
             />
           </View>
         </TouchableWithoutFeedback>
         <View style={styles.button}>
-          <ButtonComp btnText={strings.SEND_EMAIL} onPress={sendCode} />
+          <ButtonComp
+            btnText={strings.SEND_EMAIL}
+            onPress={handleSubmit(sendCode)}
+          />
         </View>
       </KeyboardAvoidingView>
     </WrapperContainer>

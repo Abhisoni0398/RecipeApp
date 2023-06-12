@@ -21,15 +21,26 @@ import colors from '../../styles/colors';
 //constants
 import navigationStrings from '../../constants/navigationStrings';
 import strings from '../../constants/lang';
+//3rd party
+import {useForm} from 'react-hook-form';
+import BottomTxt from '../../Components/BottomTxt';
 
 // create a component
 const Login: FC = (props: any) => {
   const {navigation} = props;
-  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+
   const onLogin = () => {
-    actions.login(true);
+    if (password.length === 0) {
+      return;
+    }
+    // actions.login(true);
   };
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({mode: 'onBlur'});
   return (
     <WrapperContainer>
       <View style={styles.container}>
@@ -39,13 +50,16 @@ const Login: FC = (props: any) => {
         />
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.view1}>
-            <TextInputWithLabel
-              value={email}
-              onChangeText={txt => setEmail(txt)}
-              placeholder={strings.ENTER_EMAIL_ADDRESS}
+            <BottomTxt
+              control={control}
               label={strings.EMAIL_ADDRESS}
-              icon="envelope"
+              placeholder={strings.EMAIL_ADDRESS}
+              show={true}
+              name={strings.EMAIL_ADDRESS}
+              pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+              msg={strings.VALID_MAIL}
             />
+
             <TextInputWithLabel
               value={password}
               onChangeText={txt => setPassword(txt)}
@@ -54,7 +68,10 @@ const Login: FC = (props: any) => {
               icon="lock"
               icon2="eye"
             />
-            <ButtonComp btnText={strings.LOGIN} onPress={onLogin} />
+            <ButtonComp
+              btnText={strings.LOGIN}
+              onPress={handleSubmit(onLogin)}
+            />
             <TouchableOpacity
               activeOpacity={0.7}
               onPress={() =>

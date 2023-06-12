@@ -19,7 +19,7 @@ interface Props {
   placeholder: string;
   inputStyle?: object; //? means its is an optional
   label: string;
-  icon?: string;
+  icon: string;
   icon2?: string;
   password?: string;
   viewStyle?: object;
