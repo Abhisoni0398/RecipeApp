@@ -34,7 +34,7 @@ const Login: FC = (props: any) => {
     if (password.length === 0) {
       return;
     }
-    // actions.login(true);
+    actions.login(true);
   };
   const {
     control,
