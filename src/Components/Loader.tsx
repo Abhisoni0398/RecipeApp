@@ -15,7 +15,7 @@ const Loader: FC<Props> = props => {
       <Modal transparent visible={isLoading}>
         <View
           style={{...commonStyles.loader, backgroundColor: 'rgba(0,0,0,0.3)'}}>
-          {/* <BarIndicator size={25} color={colors.theme} /> */}
+          <BarIndicator size={25} color={colors.theme} />
         </View>
       </Modal>
     );
