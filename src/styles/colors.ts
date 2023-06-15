@@ -21,5 +21,6 @@ export default {
     white: '#FFFFFFFF',
     whiteOpacity50: 'rgba(255, 255, 255, 0.5)',
     whiteOpacity70: 'rgba(255, 255, 255, 0.7)',
- 
+    tab: '#42d4f5',
+    tabActive: '#42b0f5'
 }

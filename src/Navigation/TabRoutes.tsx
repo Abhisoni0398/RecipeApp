@@ -6,6 +6,8 @@ import colors from '../styles/colors';
 import * as Screens from '../Screens'; //import all screens
 import * as Animatable from 'react-native-animatable';
 import navigationStrings from '../constants/navigationStrings';
+import {moderateScale} from '../styles/responsiveSize';
+import imagePath from '../constants/imagePath';
 
 const TabArr = [
   {
@@ -16,19 +18,20 @@ const TabArr = [
     component: Screens.Home,
   },
   {
-    route: navigationStrings.POST,
-    label: 'Like',
-    activeIcon: 'home',
-    inActiveIcon: 'home',
-    component: Screens.Post,
-  },
-  {
     route: navigationStrings.SEARCH,
     label: 'Search',
-    activeIcon: 'home',
-    inActiveIcon: 'home',
+    activeIcon: 'search',
+    inActiveIcon: 'search',
     component: Screens.Search,
   },
+  {
+    route: navigationStrings.NOTIFICATION,
+    label: 'Notofication',
+    activeIcon: 'bell',
+    inActiveIcon: 'bell',
+    component: Screens.Notification,
+  },
+
   {
     route: navigationStrings.PROFILE,
     label: 'Account',
@@ -67,7 +70,7 @@ const TabButton = (props: any) => {
       <Animatable.View ref={viewRef} duration={1000} style={styles.container}>
         <Icon
           name={focused ? item.activeIcon : item.inActiveIcon}
-          color={focused ? colors.red : colors.gray}
+          color={focused ? colors.tab : colors.tabActive}
           size={20}
         />
       </Animatable.View>
@@ -81,12 +84,12 @@ export default function AnimTab1() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height: 60,
+          height: moderateScale(60),
           position: 'absolute',
           bottom: 16,
           right: 16,
           left: 16,
-          borderRadius: 16,
+          borderRadius: moderateScale(30),
           flex: 1,
         },
       }}>

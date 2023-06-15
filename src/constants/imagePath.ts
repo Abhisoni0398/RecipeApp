@@ -11,5 +11,7 @@ export default {
   fourthInActiveIcon: require('../assets/images/ic_blue_setting.png'),
   fifthActiveIcon: require('../assets/images/ic_blue_setting.png'),
   fifthInActiveIcon: require('../assets/images/ic_blue_setting.png'),
-  ic_back: require('../assets/images/ic_back.png')
+  ic_back: require('../assets/images/ic_back.png'),
+  house: require('../assets/images/house.png'),
+  offer: require('../assets/images/offer.png'),
 };
