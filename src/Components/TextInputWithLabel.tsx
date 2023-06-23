@@ -13,7 +13,7 @@ import commonStyles from '../styles/commonStyles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import strings from '../constants/lang';
 
-interface Props {
+interface IinputProps {
   value: string;
   onChangeText: (text: string) => void;
   placeholder: string;
@@ -25,7 +25,7 @@ interface Props {
   viewStyle?: object;
 }
 
-const TextInputWithLabel: FC<Props> = props => {
+const TextInputWithLabel: FC<IinputProps> = props => {
   const {
     value,
     placeholder,

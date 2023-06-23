@@ -21,7 +21,7 @@ export const androidCameraPermission = () =>
                         'Alert',
                         "Don't have permission to open camera",
                         [{ text: 'Okay' }],
-                        { cancelable: true }​​​​​​​​,
+                        // { cancelable: true }​​​​​​​​,
                     );
                     return resolve(false);
                     // alert(strings.DO_NOT_HAVE_PERMISSIONS_TO_SELECT_IMAGE);
@@ -45,30 +45,30 @@ export const androidCameraPermission = () =>
 // return Promise.resolve('granted');
 // }​​​​​​​​;
 
-export const locationPermission = () => newPromise(async (resolve, reject) => {
-    if (Platform.OS === 'ios') {
-        try {
-            const permissionStatus = await Geolocation.requestAuthorization('whenInUse');
-            if (permissionStatus === 'granted') {
-                return resolve('granted');
-            }
-            reject('Permission not granted');
-        } catch (error) {
-            return reject(error);
-        }
-    }
-    return PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-    ).then((granted) => {
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            //console.log('You can use the location');
-            return resolve('granted');
-        }
-        //console.log('Location permission denied');
-        return reject('Location Permission denied');
-    }).catch((error) => {
-        console.log('Ask Location permission error: ', error);
-        return reject(error);
-    });
-});
+// export const locationPermission = () => new Promise(async (resolve, reject) => {
+//     if (Platform.OS === 'ios') {
+//         try {
+//             const permissionStatus = await Geolocation.requestAuthorization('whenInUse');
+//             if (permissionStatus === 'granted') {
+//                 return resolve('granted');
+//             }
+//             reject('Permission not granted');
+//         } catch (error) {
+//             return reject(error);
+//         }
+//     }
+//     return PermissionsAndroid.request(
+//         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+//     ).then((granted) => {
+//         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+//             //console.log('You can use the location');
+//             return resolve('granted');
+//         }
+//         //console.log('Location permission denied');
+//         return reject('Location Permission denied');
+//     }).catch((error) => {
+//         console.log('Ask Location permission error: ', error);
+//         return reject(error);
+//     });
+// });
 

@@ -14,4 +14,9 @@ export default {
   ic_back: require('../assets/images/ic_back.png'),
   house: require('../assets/images/house.png'),
   offer: require('../assets/images/offer.png'),
+  privacy: require('../assets/images/privacy.png'),
+  faq: require('../assets/images/faq.png'),
+  history: require('../assets/images/history.png'),
+  logout: require('../assets/images/logout.png'),
+  terms: require('../assets/images/terms.png'),
 };

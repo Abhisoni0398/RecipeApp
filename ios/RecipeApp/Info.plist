@@ -57,6 +57,12 @@
 		<string>Montserrat-Medium.ttf</string>
 		<string>Montserrat-Regular.ttf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Reciply requires access to your phone’s camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Reciply requires access to your phone’s gallery.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Reciply requires access to your phone’s microphone.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
 	<key>UILaunchStoryboardName</key>
