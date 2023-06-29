@@ -11,17 +11,21 @@ import TextWithButton from '../../Components/TextWithButton';
 import strings from '../../constants/lang';
 //styling
 import {moderateScale} from '../../styles/responsiveSize';
-import fontFamily from '../../styles/fontFamily';
-import colors from '../../styles/colors';
+import styles from './styles';
 //custom functions
 import {androidCameraPermission} from '../../utils/permissions';
 import {OpenPicker} from '../../utils/imagePicker';
 import imagePath from '../../constants/imagePath';
+import actions from '../../redux/actions';
 
 // create a component
 const Profile: FC = () => {
   const [isCameraModalVisible, setIsCameraModalVisible] = useState(false);
   const [selfie, setSelfie] = useState('');
+
+  const onLogout = (): void => {
+    actions.logout();
+  };
 
   const options = {
     saveToPhotos: true,
@@ -99,7 +103,7 @@ const Profile: FC = () => {
       <TextWithButton
         text={strings.LOGOUT}
         image={imagePath.logout}
-        onPress={() => console.log('Hello')}
+        onPress={onLogout}
       />
       <CameraModal
         isCameraModalVisible={isCameraModalVisible}
@@ -111,41 +115,4 @@ const Profile: FC = () => {
   );
 };
 
-// define your styles
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  profileImg: {
-    alignItems: 'center',
-    marginTop: moderateScale(18),
-  },
-  centerView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: moderateScale(12),
-    marginBottom: '25%',
-  },
-  txtStyle: {
-    fontFamily: fontFamily.medium,
-    color: colors.black,
-  },
-  btnStyle: {
-    marginVertical: moderateScale(6),
-    backgroundColor: colors.black,
-    borderRadius: moderateScale(24),
-    paddingHorizontal: moderateScale(18),
-    paddingVertical: moderateScale(6),
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  btnTxt: {
-    fontFamily: fontFamily.medium,
-    color: colors.white,
-  },
-});
-
-//make this component available to the app
 export default Profile;

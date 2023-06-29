@@ -34,6 +34,7 @@ export default {
     LAST_NAME: 'Last Name',
     HISTORY: 'History',
     FAQ: 'FAQs',
+    SEARCH: 'Search',
     NOTIFICATIONS: 'Notifications',
     BY_CONTINUE: 'By continuing, you agree to the',
     TERMS: 'Terms of Services ',
